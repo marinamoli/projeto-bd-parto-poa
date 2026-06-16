@@ -1,0 +1,28 @@
+{
+  "tipo_documento": "relatorio_indicadores_distrito",
+  "fonte": "Secretaria Municipal de Saude de Porto Alegre (SIMULADO)",
+  "data_referencia": "2023-12-31",
+  "distrito_sanitario": "Partenon-Lomba do Pinheiro",
+  "id_distrito": "DS006",
+  "perfil_socioeconomico": "baixo",
+  "populacao_estimada": 230000,
+  "infraestrutura": {
+    "leitos_obstetricos": 20,
+    "salas_parto_normal": 2,
+    "centro_cirurgico_24h": false,
+    "uti_neonatal": false,
+    "avaliacao_geral": "inadequada"
+  },
+  "indicadores": {
+    "taxa_cesarea_distrito": 34.2,
+    "cobertura_prenatal_7_consultas": 61.4,
+    "mortalidade_infantil_por_mil": 13.7,
+    "proporcao_maes_negras_pct": 42.9
+  },
+  "observacoes": "Distrito de alta vulnerabilidade social. Infraestrutura obstetrica deficitaria.",
+  "metadados": {
+    "versao": "1.0",
+    "autor": "Marina M. Garramones (simulacao academica)",
+    "projeto": "Intervencoes Medicas e Desigualdades no Parto"
+  }
+}

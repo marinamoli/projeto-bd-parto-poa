@@ -1,0 +1,28 @@
+{
+  "tipo_documento": "relatorio_indicadores_distrito",
+  "fonte": "Secretaria Municipal de Saude de Porto Alegre (SIMULADO)",
+  "data_referencia": "2023-12-31",
+  "distrito_sanitario": "Norte",
+  "id_distrito": "DS002",
+  "perfil_socioeconomico": "medio",
+  "populacao_estimada": 215000,
+  "infraestrutura": {
+    "leitos_obstetricos": 32,
+    "salas_parto_normal": 2,
+    "centro_cirurgico_24h": true,
+    "uti_neonatal": false,
+    "avaliacao_geral": "adequada"
+  },
+  "indicadores": {
+    "taxa_cesarea_distrito": 47.2,
+    "cobertura_prenatal_7_consultas": 74.5,
+    "mortalidade_infantil_por_mil": 9.4,
+    "proporcao_maes_negras_pct": 26.3
+  },
+  "observacoes": "Distrito misto, com predominio de classe media.",
+  "metadados": {
+    "versao": "1.0",
+    "autor": "Marina M. Garramones (simulacao academica)",
+    "projeto": "Intervencoes Medicas e Desigualdades no Parto"
+  }
+}

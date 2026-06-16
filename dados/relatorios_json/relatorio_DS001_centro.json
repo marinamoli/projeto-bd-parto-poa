@@ -1,0 +1,28 @@
+{
+  "tipo_documento": "relatorio_indicadores_distrito",
+  "fonte": "Secretaria Municipal de Saude de Porto Alegre (SIMULADO)",
+  "data_referencia": "2023-12-31",
+  "distrito_sanitario": "Centro",
+  "id_distrito": "DS001",
+  "perfil_socioeconomico": "alto",
+  "populacao_estimada": 280000,
+  "infraestrutura": {
+    "leitos_obstetricos": 78,
+    "salas_parto_normal": 4,
+    "centro_cirurgico_24h": true,
+    "uti_neonatal": true,
+    "avaliacao_geral": "adequada"
+  },
+  "indicadores": {
+    "taxa_cesarea_distrito": 58.4,
+    "cobertura_prenatal_7_consultas": 81.2,
+    "mortalidade_infantil_por_mil": 7.8,
+    "proporcao_maes_negras_pct": 18.5
+  },
+  "observacoes": "Distrito com maior concentracao de hospitais privados. Tendencia historica a cesareas eletivas.",
+  "metadados": {
+    "versao": "1.0",
+    "autor": "Marina M. Garramones (simulacao academica)",
+    "projeto": "Intervencoes Medicas e Desigualdades no Parto"
+  }
+}

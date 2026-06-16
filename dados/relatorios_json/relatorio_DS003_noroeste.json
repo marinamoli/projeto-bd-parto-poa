@@ -1,0 +1,28 @@
+{
+  "tipo_documento": "relatorio_indicadores_distrito",
+  "fonte": "Secretaria Municipal de Saude de Porto Alegre (SIMULADO)",
+  "data_referencia": "2023-12-31",
+  "distrito_sanitario": "Noroeste",
+  "id_distrito": "DS003",
+  "perfil_socioeconomico": "alto",
+  "populacao_estimada": 165000,
+  "infraestrutura": {
+    "leitos_obstetricos": 45,
+    "salas_parto_normal": 3,
+    "centro_cirurgico_24h": true,
+    "uti_neonatal": true,
+    "avaliacao_geral": "adequada"
+  },
+  "indicadores": {
+    "taxa_cesarea_distrito": 62.7,
+    "cobertura_prenatal_7_consultas": 84.6,
+    "mortalidade_infantil_por_mil": 6.5,
+    "proporcao_maes_negras_pct": 14.2
+  },
+  "observacoes": "Distrito predominantemente branco e de alta renda.",
+  "metadados": {
+    "versao": "1.0",
+    "autor": "Marina M. Garramones (simulacao academica)",
+    "projeto": "Intervencoes Medicas e Desigualdades no Parto"
+  }
+}

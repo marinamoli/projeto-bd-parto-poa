@@ -1,0 +1,28 @@
+{
+  "tipo_documento": "relatorio_indicadores_distrito",
+  "fonte": "Secretaria Municipal de Saude de Porto Alegre (SIMULADO)",
+  "data_referencia": "2023-12-31",
+  "distrito_sanitario": "Leste",
+  "id_distrito": "DS004",
+  "perfil_socioeconomico": "medio_baixo",
+  "populacao_estimada": 195000,
+  "infraestrutura": {
+    "leitos_obstetricos": 28,
+    "salas_parto_normal": 2,
+    "centro_cirurgico_24h": false,
+    "uti_neonatal": false,
+    "avaliacao_geral": "parcial"
+  },
+  "indicadores": {
+    "taxa_cesarea_distrito": 41.8,
+    "cobertura_prenatal_7_consultas": 68.3,
+    "mortalidade_infantil_por_mil": 11.2,
+    "proporcao_maes_negras_pct": 35.7
+  },
+  "observacoes": "Distrito com lacunas na cobertura de cirurgia 24h. Demanda reprimida.",
+  "metadados": {
+    "versao": "1.0",
+    "autor": "Marina M. Garramones (simulacao academica)",
+    "projeto": "Intervencoes Medicas e Desigualdades no Parto"
+  }
+}

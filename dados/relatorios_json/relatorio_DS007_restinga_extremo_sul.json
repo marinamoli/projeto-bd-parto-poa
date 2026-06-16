@@ -1,0 +1,28 @@
+{
+  "tipo_documento": "relatorio_indicadores_distrito",
+  "fonte": "Secretaria Municipal de Saude de Porto Alegre (SIMULADO)",
+  "data_referencia": "2023-12-31",
+  "distrito_sanitario": "Restinga-Extremo Sul",
+  "id_distrito": "DS007",
+  "perfil_socioeconomico": "baixo",
+  "populacao_estimada": 145000,
+  "infraestrutura": {
+    "leitos_obstetricos": 14,
+    "salas_parto_normal": 1,
+    "centro_cirurgico_24h": false,
+    "uti_neonatal": false,
+    "avaliacao_geral": "inadequada"
+  },
+  "indicadores": {
+    "taxa_cesarea_distrito": 31.6,
+    "cobertura_prenatal_7_consultas": 57.8,
+    "mortalidade_infantil_por_mil": 15.2,
+    "proporcao_maes_negras_pct": 47.8
+  },
+  "observacoes": "Maior taxa de mortalidade infantil da cidade. Maior proporcao de maes negras.",
+  "metadados": {
+    "versao": "1.0",
+    "autor": "Marina M. Garramones (simulacao academica)",
+    "projeto": "Intervencoes Medicas e Desigualdades no Parto"
+  }
+}

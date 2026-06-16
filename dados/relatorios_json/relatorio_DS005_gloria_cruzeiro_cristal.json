@@ -1,0 +1,28 @@
+{
+  "tipo_documento": "relatorio_indicadores_distrito",
+  "fonte": "Secretaria Municipal de Saude de Porto Alegre (SIMULADO)",
+  "data_referencia": "2023-12-31",
+  "distrito_sanitario": "Gloria-Cruzeiro-Cristal",
+  "id_distrito": "DS005",
+  "perfil_socioeconomico": "medio_baixo",
+  "populacao_estimada": 175000,
+  "infraestrutura": {
+    "leitos_obstetricos": 22,
+    "salas_parto_normal": 2,
+    "centro_cirurgico_24h": true,
+    "uti_neonatal": false,
+    "avaliacao_geral": "parcial"
+  },
+  "indicadores": {
+    "taxa_cesarea_distrito": 38.5,
+    "cobertura_prenatal_7_consultas": 66.1,
+    "mortalidade_infantil_por_mil": 10.8,
+    "proporcao_maes_negras_pct": 41.6
+  },
+  "observacoes": "Alta proporcao de gestantes negras. UTI neonatal ausente.",
+  "metadados": {
+    "versao": "1.0",
+    "autor": "Marina M. Garramones (simulacao academica)",
+    "projeto": "Intervencoes Medicas e Desigualdades no Parto"
+  }
+}
