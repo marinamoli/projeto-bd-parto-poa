@@ -408,35 +408,128 @@ with tab3:
 # ============================================================
 # TAB 4 - DISTRITOS
 # ============================================================
+# ============================================================
+# TAB 4 - DISTRITOS (com mapa de marcadores)
+# ============================================================
 with tab4:
     st.subheader("Análise Espacial por Distrito Sanitário (NoSQL/JSONB)")
     st.caption("Cruzamento geográfico dos dados de saúde extraídos dos documentos JSONB do Supabase")
 
-    # --- RENDERIZADO DO MAPA INTERATIVO ---
+    # Coordenadas aproximadas dos 8 Distritos Sanitarios de POA
+    coordenadas_distritos = {
+        "Norte": (-29.985, -51.135),
+        "Noroeste": (-30.005, -51.215),
+        "Leste": (-30.045, -51.110),
+        "Centro": (-30.030, -51.215),
+        "Partenon-Lomba do Pinheiro": (-30.090, -51.130),
+        "Glória-Cruzeiro-Cristal": (-30.080, -51.215),
+        "Sul-Centro Sul": (-30.115, -51.235),
+        "Restinga-Extremo Sul": (-30.205, -51.150),
+    }
+
+    # Cores por perfil socioeconomico
+    cor_perfil = {
+        "alto": "#27ae60",
+        "medio": "#3498db",
+        "medio_baixo": "#e67e22",
+        "baixo": "#c0392b"
+    }
+
+    # --- MAPA INTERATIVO COM MARCADORES ---
+    st.markdown("### Mapa Interativo dos Distritos Sanitarios")
+    st.caption("Tamanho do circulo = mortalidade infantil | Cor = perfil socioeconomico | Clique nos marcadores para ver detalhes")
+
     try:
-        with open("dados/distritos_poa.geojson", "r", encoding="utf-8") as f:
-            geo_data = json.load(f)
+        # Mapa centrado em Porto Alegre
+        m = folium.Map(location=[-30.075, -51.180], zoom_start=11, tiles="cartodbpositron")
 
-        m = folium.Map(location=[-30.06, -51.17], zoom_start=11, tiles="cartodbpositron")
+        # Adicionar um marcador para cada distrito
+        for _, row in df_distritos.iterrows():
+            distrito_nome = row["distrito"]
 
-        folium.Choropleth(
-            geo_data=geo_data,
-            name="choropleth",
-            data=df_distritos,
-            columns=["distrito", "mortalidade_infantil"],
-            key_on="feature.properties.name",
-            fill_color="Reds",
-            fill_opacity=0.7,
-            line_opacity=0.4,
-            legend_name="Taxa de Mortalidade Infantil (por mil)",
-            nan_fill_color="#f1f2f6", # Ajuste visual suave corregido
-            nan_fill_opacity=0.4,
-        ).add_to(m)
+            # Buscar coordenadas (com fallback se nome nao bater exatamente)
+            coords = coordenadas_distritos.get(distrito_nome)
+            if coords is None:
+                # Tentar buscar com normalizacao basica
+                for k, v in coordenadas_distritos.items():
+                    if k.lower().startswith(distrito_nome.lower()[:5]):
+                        coords = v
+                        break
+            if coords is None:
+                continue
 
-        st_folium(m, width=1000, height=450, returned_objects=[])
+            lat, lon = coords
+
+            # Tamanho do circulo baseado na mortalidade (escala visual)
+            raio = max(8, float(row["mortalidade_infantil"]) * 2.5)
+
+            # Cor baseada no perfil socioeconomico
+            cor = cor_perfil.get(row["perfil"], "#7f8c8d")
+
+            # Popup com info detalhada
+            popup_html = f"""
+            <div style='font-family: Arial; min-width: 220px'>
+                <h4 style='color: {cor}; margin: 0 0 8px 0; border-bottom: 2px solid {cor}'>
+                    {distrito_nome}
+                </h4>
+                <p style='margin: 4px 0'><b>Perfil:</b> {row['perfil']}</p>
+                <p style='margin: 4px 0'><b>Mortalidade Infantil:</b> {row['mortalidade_infantil']:.1f}/mil</p>
+                <p style='margin: 4px 0'><b>Taxa Cesarea:</b> {row['taxa_cesarea']:.1f}%</p>
+                <p style='margin: 4px 0'><b>Cobertura Pre-natal (7+):</b> {row['cobertura_prenatal']:.1f}%</p>
+                <p style='margin: 4px 0'><b>Maes Negras:</b> {row['pct_maes_negras']:.1f}%</p>
+                <p style='margin: 4px 0'><b>Leitos Obstetricos:</b> {row['leitos']}</p>
+                <p style='margin: 4px 0'><b>Infraestrutura:</b> {row['infraestrutura']}</p>
+            </div>
+            """
+
+            # Adicionar circulo
+            folium.CircleMarker(
+                location=[lat, lon],
+                radius=raio,
+                popup=folium.Popup(popup_html, max_width=300),
+                tooltip=f"{distrito_nome} - {row['mortalidade_infantil']:.1f}/mil",
+                color=cor,
+                fill=True,
+                fillColor=cor,
+                fillOpacity=0.6,
+                weight=2
+            ).add_to(m)
+
+            # Adicionar etiqueta com nome
+            folium.Marker(
+                location=[lat, lon],
+                icon=folium.DivIcon(
+                    html=f"""<div style='font-size: 10px; font-weight: bold;
+                                color: #2c3e50; background: rgba(255,255,255,0.85);
+                                padding: 2px 6px; border-radius: 4px;
+                                white-space: nowrap; text-align: center;'>
+                                {distrito_nome.split('-')[0]}
+                             </div>""",
+                    icon_size=(120, 20),
+                    icon_anchor=(60, -5)
+                )
+            ).add_to(m)
+
+        # Legenda
+        legend_html = """
+        <div style='position: fixed; bottom: 30px; right: 30px; z-index: 9999;
+                    background: white; padding: 10px 14px; border: 2px solid #ddd;
+                    border-radius: 6px; font-family: Arial; font-size: 12px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.1)'>
+            <p style='margin: 0 0 6px 0; font-weight: bold; font-size: 13px'>Perfil Socioeconomico</p>
+            <p style='margin: 3px 0'><span style='color:#27ae60; font-size:16px'>●</span> Alto</p>
+            <p style='margin: 3px 0'><span style='color:#3498db; font-size:16px'>●</span> Medio</p>
+            <p style='margin: 3px 0'><span style='color:#e67e22; font-size:16px'>●</span> Medio-Baixo</p>
+            <p style='margin: 3px 0'><span style='color:#c0392b; font-size:16px'>●</span> Baixo</p>
+        </div>
+        """
+        m.get_root().html.add_child(folium.Element(legend_html))
+
+        st_folium(m, width=1000, height=550, returned_objects=[])
         st.markdown("---")
+
     except Exception as e:
-        st.error(f"Não foi possível carregar o mapa geográfico: {e}")
+        st.error(f"Não foi possível carregar o mapa: {e}")
 
     # --- GRAFICOS DE ANALISE ---
     col_g, col_h = st.columns(2)
@@ -446,10 +539,7 @@ with tab4:
             df_distritos.sort_values("mortalidade_infantil"),
             x="mortalidade_infantil", y="distrito", orientation="h",
             color="perfil", text="mortalidade_infantil",
-            color_discrete_map={
-                "alto": "#27ae60", "medio": "#3498db",
-                "medio_baixo": "#e67e22", "baixo": "#c0392b"
-            },
+            color_discrete_map=cor_perfil,
             labels={"mortalidade_infantil": "Mortalidade Infantil (por mil)", "distrito": ""}
         )
         fig4.update_traces(textposition="outside")
@@ -462,10 +552,7 @@ with tab4:
             x="pct_maes_negras", y="taxa_cesarea",
             size="leitos", color="perfil",
             hover_name="distrito",
-            color_discrete_map={
-                "alto": "#27ae60", "medio": "#3498db",
-                "medio_baixo": "#e67e22", "baixo": "#c0392b"
-            },
+            color_discrete_map=cor_perfil,
             labels={
                 "pct_maes_negras": "% Maes Negras",
                 "taxa_cesarea": "Taxa de Cesarea (%)",
@@ -477,7 +564,6 @@ with tab4:
 
     st.subheader("Tabela Completa dos Distritos")
     st.dataframe(df_distritos, width="stretch", hide_index=True)
-
 # ============================================================
 # TAB 5 - ARQUITETURA
 # ============================================================

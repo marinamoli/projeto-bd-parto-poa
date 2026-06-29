@@ -1,13 +1,140 @@
 {
   "type": "FeatureCollection",
+  "name": "distritos_sanitarios_poa",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
   "features": [
-    { "type": "Feature", "properties": { "name": "Centro" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.225, -30.030], [-51.215, -30.030], [-51.215, -30.040], [-51.225, -30.040], [-51.225, -30.030]]] } },
-    { "type": "Feature", "properties": { "name": "Norte" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.180, -29.990], [-51.140, -29.990], [-51.140, -30.010], [-51.180, -30.010], [-51.180, -29.990]]] } },
-    { "type": "Feature", "properties": { "name": "Noroeste" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.190, -30.010], [-51.160, -30.010], [-51.160, -30.030], [-51.190, -30.030], [-51.190, -30.010]]] } },
-    { "type": "Feature", "properties": { "name": "Leste" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.150, -30.040], [-51.110, -30.040], [-51.110, -30.070], [-51.150, -30.070], [-51.150, -30.040]]] } },
-    { "type": "Feature", "properties": { "name": "Glória-Cruzeiro-Cristal" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.230, -30.060], [-51.200, -30.060], [-51.200, -30.090], [-51.230, -30.090], [-51.230, -30.060]]] } },
-    { "type": "Feature", "properties": { "name": "Partenon-Lomba do Pinheiro" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.170, -30.060], [-51.090, -30.060], [-51.090, -30.100], [-51.170, -30.100], [-51.170, -30.060]]] } },
-    { "type": "Feature", "properties": { "name": "Restinga-Extremo Sul" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.210, -30.130], [-51.130, -30.130], [-51.130, -30.240], [-51.210, -30.240], [-51.210, -30.130]]] } },
-    { "type": "Feature", "properties": { "name": "Sul-Centro Sul" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.250, -30.090], [-51.200, -30.090], [-51.200, -30.160], [-51.250, -30.160], [-51.250, -30.090]]] } }
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Norte",
+        "descricao": "Distrito Sanitario Norte",
+        "bairros_principais": "Sarandi, Rubem Berta, Mario Quintana, Costa e Silva"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-51.180, -29.965], [-51.130, -29.960], [-51.090, -29.985],
+          [-51.085, -30.010], [-51.115, -30.020], [-51.150, -30.020],
+          [-51.180, -30.005], [-51.180, -29.965]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Noroeste",
+        "descricao": "Distrito Sanitario Noroeste",
+        "bairros_principais": "Navegantes, Humaita, Sao Geraldo, Anchieta, Floresta"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-51.230, -29.985], [-51.180, -29.965], [-51.180, -30.005],
+          [-51.200, -30.020], [-51.230, -30.020], [-51.245, -30.000],
+          [-51.230, -29.985]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Leste",
+        "descricao": "Distrito Sanitario Leste",
+        "bairros_principais": "Bom Jesus, Sao Joao, Vila Joao Pessoa, Jardim Carvalho"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-51.150, -30.020], [-51.115, -30.020], [-51.085, -30.010],
+          [-51.075, -30.035], [-51.080, -30.060], [-51.115, -30.070],
+          [-51.150, -30.060], [-51.165, -30.040], [-51.150, -30.020]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centro",
+        "descricao": "Distrito Sanitario Centro",
+        "bairros_principais": "Centro Historico, Bom Fim, Independencia, Cidade Baixa"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-51.230, -30.020], [-51.200, -30.020], [-51.180, -30.005],
+          [-51.165, -30.040], [-51.180, -30.055], [-51.205, -30.060],
+          [-51.230, -30.050], [-51.235, -30.035], [-51.230, -30.020]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Partenon-Lomba do Pinheiro",
+        "descricao": "Distrito Sanitario Partenon-Lomba do Pinheiro",
+        "bairros_principais": "Partenon, Lomba do Pinheiro, Vila Joao Pessoa"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-51.150, -30.060], [-51.115, -30.070], [-51.080, -30.060],
+          [-51.070, -30.080], [-51.075, -30.110], [-51.110, -30.125],
+          [-51.150, -30.120], [-51.170, -30.095], [-51.165, -30.075],
+          [-51.150, -30.060]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Glória-Cruzeiro-Cristal",
+        "descricao": "Distrito Sanitario Gloria-Cruzeiro-Cristal",
+        "bairros_principais": "Cristal, Gloria, Cruzeiro, Santa Tereza"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-51.235, -30.035], [-51.230, -30.050], [-51.205, -30.060],
+          [-51.180, -30.055], [-51.165, -30.075], [-51.170, -30.095],
+          [-51.205, -30.105], [-51.230, -30.095], [-51.240, -30.075],
+          [-51.245, -30.055], [-51.235, -30.035]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sul-Centro Sul",
+        "descricao": "Distrito Sanitario Sul-Centro Sul",
+        "bairros_principais": "Tristeza, Vila Assuncao, Camaqua, Cavalhada, Nonoai"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-51.245, -30.055], [-51.240, -30.075], [-51.230, -30.095],
+          [-51.205, -30.105], [-51.180, -30.120], [-51.195, -30.140],
+          [-51.225, -30.145], [-51.250, -30.130], [-51.260, -30.100],
+          [-51.260, -30.075], [-51.245, -30.055]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Restinga-Extremo Sul",
+        "descricao": "Distrito Sanitario Restinga-Extremo Sul",
+        "bairros_principais": "Restinga, Belem Novo, Lami, Lageado, Ponta Grossa"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-51.225, -30.145], [-51.195, -30.140], [-51.150, -30.120],
+          [-51.110, -30.125], [-51.075, -30.110], [-51.060, -30.150],
+          [-51.060, -30.190], [-51.080, -30.230], [-51.130, -30.260],
+          [-51.190, -30.265], [-51.230, -30.245], [-51.255, -30.210],
+          [-51.260, -30.170], [-51.250, -30.130], [-51.225, -30.145]
+        ]]
+      }
+    }
   ]
 }
