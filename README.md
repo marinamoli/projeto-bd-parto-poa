@@ -1,76 +1,59 @@
-\# Intervenções Médicas e Desigualdades no Parto — Porto Alegre 2014-2023
+---
 
+## 🚀 Como Executar Localmente
 
+```bash
+# 1. Clonar repositório
+git clone https://github.com/marinamoli/projeto-bd-parto-poa.git
+cd projeto-bd-parto-poa
 
-> Uma arquitetura híbrida em PostgreSQL para integrar microdados do SINASC com relatórios da Secretaria Municipal de Saúde de Porto Alegre.
+# 2. Instalar dependências
+pip install -r requirements.txt
 
+# 3. Configurar .env com credenciais PostgreSQL
+echo "DB_NAME=postgres
+DB_USER=seu_usuario
+DB_PASSWORD=sua_senha
+DB_HOST=localhost
+DB_PORT=5432" > .env
 
+# 4. Executar dashboard
+python -m streamlit run dashboard_app.py
+```
 
-\*\*Autora\*\*: Marina M. Garramones
+---
 
-\*\*Disciplina\*\*: INF01006 — Projeto de Banco de Dados
+## 📊 Funcionalidades do Dashboard
 
-\*\*Universidade\*\*: UFRGS — Universidade Federal do Rio Grande do Sul
+O dashboard interativo oferece 5 abas de análise:
 
-\*\*Ano\*\*: 2026
+1. **Achados Principais** — Gráfico da paradoxo de Simpson (Raça × Escolaridade × Taxa Cesárea)
+2. **Evolução Temporal** — Tendências 2014-2023 (nascimentos e cesárea)
+3. **Análise Demográfica** — Distribuição por raça, idade e escolaridade
+4. **Distritos Sanitários** — Mapa interativo com os 8 distritos de POA + indicadores extraídos do JSONB
+5. **Arquitetura** — Documentação técnica do projeto
 
+**Filtros disponíveis**: período temporal, raça/cor, faixa etária, escolaridade.
 
+---
 
-\## 📊 Dashboard ao Vivo
+## 📚 Trabalhos Relacionados
 
+O projeto se posiciona na intersecção de três eixos:
 
+- **Médico-epidemiológico**: Souza et al. (2021), Racismo Obstétrico (2024)
+- **Técnico / Engenharia de Dados**: PCDaS/Fiocruz (Elasticsearch), Pegasus/TCU (PostgreSQL)
+- **Geográfico-territorial**: Ribeiro et al. (2023) sobre disparidades em POA
 
-🔗 \*\*\[Ver dashboard interativo](https://SEU-LINK.streamlit.app)\*\* \_(em breve)\_
+---
 
+## 📄 Fontes de Dados
 
+- [SINASC — Sistema de Informações sobre Nascidos Vivos (DATASUS)](https://datasus.saude.gov.br/transferencia-de-arquivos/)
+- [Boletim do Comitê de Prevenção do Óbito Infantil — SMS-POA](https://prefeitura.poa.br/sms)
 
-\## 🎯 Sobre o Projeto
+---
 
+## 📜 Licença
 
-
-Este projeto integra \*\*167.319 nascimentos\*\* registrados em Porto Alegre entre 2014 e 2023 (microdados do SINASC) com \*\*relatórios institucionais\*\* da Secretaria Municipal de Saúde, criando uma arquitetura híbrida que torna visíveis disparidades sociodemográficas hoje fragmentadas em sistemas distintos.
-
-
-
-\### Principais achados
-
-
-
-1\. \*\*Diferença racial aparente\*\*: A taxa de cesárea varia 12 pontos entre brancas (53%) e pardas (41%) no agregado dos 10 anos.
-
-
-
-2\. \*\*Paradoxo de Simpson\*\*: Ao controlar por escolaridade, a diferença racial \*\*desaparece\*\*. Universitárias têm \~65% de cesárea independente da raça. A escolaridade é a variável determinante.
-
-
-
-3\. \*\*Queda demográfica\*\*: Porto Alegre perdeu \*\*28,8% de seus nascimentos\*\* em 10 anos (de 19.189 em 2014 para 13.663 em 2023). A pandemia acelerou a tendência.
-
-
-
-4\. \*\*Cesárea estrutural\*\*: A taxa global se manteve em \~50%, três vezes a recomendação OMS. Não é coyuntural, é estrutural.
-
-
-
-\## 🏗️ Arquitetura
-
-
-
-\### Modelo Híbrido PostgreSQL
-
-
-
-| Componente | Tipo | Conteúdo |
-
-|---|---|---|
-
-| `gestante` | Relacional | Dados sociodemográficos da mãe |
-
-| `nascimento\_parto` | Relacional | Dados do parto (com coluna `ano`) |
-
-| `relatorios\_municipais` | NoSQL (JSONB) | Documentos institucionais semiestruturados |
-
-
-
-\### Pipeline ETL
-
+Projeto acadêmico — INF01006 UFRGS, 2026.
