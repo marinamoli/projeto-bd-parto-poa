@@ -1,0 +1,13 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "properties": { "name": "Centro" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.225, -30.030], [-51.215, -30.030], [-51.215, -30.040], [-51.225, -30.040], [-51.225, -30.030]]] } },
+    { "type": "Feature", "properties": { "name": "Norte" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.180, -29.990], [-51.140, -29.990], [-51.140, -30.010], [-51.180, -30.010], [-51.180, -29.990]]] } },
+    { "type": "Feature", "properties": { "name": "Noroeste" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.190, -30.010], [-51.160, -30.010], [-51.160, -30.030], [-51.190, -30.030], [-51.190, -30.010]]] } },
+    { "type": "Feature", "properties": { "name": "Leste" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.150, -30.040], [-51.110, -30.040], [-51.110, -30.070], [-51.150, -30.070], [-51.150, -30.040]]] } },
+    { "type": "Feature", "properties": { "name": "Glória-Cruzeiro-Cristal" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.230, -30.060], [-51.200, -30.060], [-51.200, -30.090], [-51.230, -30.090], [-51.230, -30.060]]] } },
+    { "type": "Feature", "properties": { "name": "Partenon-Lomba do Pinheiro" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.170, -30.060], [-51.090, -30.060], [-51.090, -30.100], [-51.170, -30.100], [-51.170, -30.060]]] } },
+    { "type": "Feature", "properties": { "name": "Restinga-Extremo Sul" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.210, -30.130], [-51.130, -30.130], [-51.130, -30.240], [-51.210, -30.240], [-51.210, -30.130]]] } },
+    { "type": "Feature", "properties": { "name": "Sul-Centro Sul" }, "geometry": { "type": "Polygon", "coordinates": [[[-51.250, -30.090], [-51.200, -30.090], [-51.200, -30.160], [-51.250, -30.160], [-51.250, -30.090]]] } }
+  ]
+}

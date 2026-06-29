@@ -1,6 +1,6 @@
 """
 Script de carga dos documentos JSON na tabela relatorios_municipais
-do PostgreSQL (componente NoSQL da arquitetura hibrida).
+do PostgreSQL (componente NoSQL da arquitetura hibrida) - Supabase.
 
 Carrega tanto os 8 documentos simulados quanto o documento real
 extraido do boletim oficial da SMS-POA.
@@ -12,25 +12,33 @@ Autora: Marina M. Garramones - UFRGS
 import psycopg2
 import json
 import os
+from dotenv import load_dotenv
+
+# Carrega as variaveis do arquivo .env
+load_dotenv()
 
 # === CONFIGURACOES ===
 DB_CONFIG = {
-    "dbname":   "parto_poa",
-    "user":     "postgres",
-    "password": "1103",
-    "host":     "localhost",
-    "port":     "5432",
+    "dbname":   os.getenv("DB_NAME"),
+    "user":     os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "host":     os.getenv("DB_HOST"),
+    "port":     os.getenv("DB_PORT"),
 }
 
 PASTA_JSON = "dados/relatorios_json"
 
 print("=" * 65)
 print("Carga dos documentos JSON na tabela relatorios_municipais")
-print("Componente NoSQL/JSONB da arquitetura hibrida")
+print("Componente NoSQL/JSONB da arquitetura hibrida (Supabase)")
 print("=" * 65)
 
 # === ETAPA 1: LISTAR ARQUIVOS JSON ===
 print(f"\n[1/4] Listando arquivos em {PASTA_JSON}/")
+if not os.path.exists(PASTA_JSON):
+    print(f"ERRO: A pasta {PASTA_JSON} nao existe.")
+    raise SystemExit(1)
+
 arquivos = sorted([f for f in os.listdir(PASTA_JSON) if f.endswith(".json")])
 print(f"      Encontrados: {len(arquivos)} arquivos")
 for arq in arquivos:
@@ -110,15 +118,19 @@ cur.execute("""
     WHERE conteudo_jsonb->>'natureza_dados' LIKE '%REAL%';
 """)
 print("\nDocumento REAL identificado:")
-for fonte, taxa in cur.fetchall():
-    print(f"   Fonte: {fonte}")
-    print(f"   Taxa de mortalidade infantil 2022: {taxa} por mil nascidos vivos")
+resultados_real = cur.fetchall()
+if resultados_real:
+    for fonte, taxa in resultados_real:
+        print(f"   Fonte: {fonte}")
+        print(f"   Taxa de mortalidade infantil 2022: {taxa} por mil nascidos vivos")
+else:
+    print("   Nenhum documento REAL encontrado ou verificado na query.")
 
 cur.close()
 conn.close()
 
 print("\n" + "=" * 65)
 print("Carga concluida! A arquitetura hibrida esta completa:")
-print("  - 13.663 nascimentos no modelo relacional")
+print("  - 167.319 nascimentos no modelo relacional")
 print(f"  - {total} documentos no modelo NoSQL (JSONB)")
 print("=" * 65)

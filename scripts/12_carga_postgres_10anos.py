@@ -12,13 +12,17 @@ import psycopg2
 from psycopg2.extras import execute_batch
 import os
 import time
+from dotenv import load_dotenv
+
+# Cargar as variaveis do arquivo .env
+load_dotenv()
 
 DB_CONFIG = {
-    "dbname":   "parto_poa",
-    "user":     "postgres",
-    "password": "1103",
-    "host":     "localhost",
-    "port":     "5432",
+    "dbname":   os.getenv("DB_NAME"),
+    "user":     os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "host":     os.getenv("DB_HOST"),
+    "port":     os.getenv("DB_PORT"),
 }
 
 PASTA_DADOS = "dados"
@@ -61,12 +65,32 @@ def converter(v):
 
 dados = []
 for _, row in df.iterrows():
+    # 1. Idade da mãe (99 = ignorado, remover valores inválidos)
+    idade_mae = converter(row.get("IDADEMAE"))
+    if idade_mae is not None and (idade_mae == 99 or idade_mae > 65):
+        idade_mae = None
+
+    # 2. Raça/Cor (Geralmente 1 a 5. Se for 9 ou inválido, vira None)
+    raca_cor = converter(row.get("RACACOR"))
+    if raca_cor not in (1, 2, 3, 4, 5):
+        raca_cor = None
+
+    # 3. Escolaridade (Geralmente 1 a 5. Se for 9 ou inválido, vira None)
+    escolaridade = converter(row.get("ESCMAE"))
+    if escolaridade not in (1, 2, 3, 4, 5):
+        escolaridade = None
+
+    # 4. Tipo de parto (Apenas 1 ou 2)
+    tipo_parto = converter(row.get("PARTO"))
+    if tipo_parto not in (1, 2):
+        tipo_parto = None
+
     dados.append((
-        converter(row.get("IDADEMAE")),
-        converter(row.get("RACACOR")),
-        converter(row.get("ESCMAE")),
+        idade_mae,
+        raca_cor,
+        escolaridade,
         str(row.get("CODMUNRES")) if row.get("CODMUNRES") is not None else None,
-        converter(row.get("PARTO")),
+        tipo_parto,
         converter(row.get("TPROBSON")),
         converter(row.get("STTRABPART")),
         converter(row.get("ANO")),
@@ -112,24 +136,8 @@ print("\nDistribuicao por ano:")
 for ano, total in cur.fetchall():
     print(f"   {ano}: {total:,}")
 
-cur.execute("""
-    SELECT
-        CASE tipo_parto
-            WHEN 1 THEN 'Vaginal'
-            WHEN 2 THEN 'Cesareo'
-            ELSE 'Ignorado' END,
-        COUNT(*),
-        ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2)
-    FROM nascimento_parto
-    GROUP BY tipo_parto
-    ORDER BY tipo_parto;
-""")
-print("\nDistribuicao por tipo de parto:")
-for tipo, total, pct in cur.fetchall():
-    print(f"   {tipo:15s}: {total:7,} ({pct}%)")
-
 cur.close()
 conn.close()
 print("\n" + "=" * 65)
-print("Carga 10 anos concluida!")
+print("Carga 10 anos concluida com sucesso!")
 print("=" * 65)
