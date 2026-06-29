@@ -422,7 +422,7 @@ with tab4:
         "Leste": (-30.045, -51.110),
         "Centro": (-30.030, -51.215),
         "Partenon-Lomba do Pinheiro": (-30.090, -51.130),
-        "Glória-Cruzeiro-Cristal": (-30.080, -51.215),
+        "Gloria-Cruzeiro-Cristal": (-30.080, -51.215),
         "Sul-Centro Sul": (-30.115, -51.235),
         "Restinga-Extremo Sul": (-30.205, -51.150),
     }
