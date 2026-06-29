@@ -3,11 +3,11 @@
 ## 🚀 Como Executar Localmente
 
 ```bash
-# 1. Clonar repositório
+# 1. Clonar repositorio
 git clone https://github.com/marinamoli/projeto-bd-parto-poa.git
 cd projeto-bd-parto-poa
 
-# 2. Instalar dependências
+# 2. Instalar dependencias
 pip install -r requirements.txt
 
 # 3. Configurar .env com credenciais PostgreSQL
